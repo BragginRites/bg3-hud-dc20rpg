@@ -16,8 +16,8 @@
       }
     ],
     "compatibility": {
-      "minimum": "12",
-      "verified": "12"
+      "minimum": "13",
+      "verified": "13"
     },
     "esmodules": [
       "scripts/module.js"
@@ -28,10 +28,10 @@
     "relationships": {
       "requires": [
         {
-          "id": "bg3-inspired-hotbar",
+          "id": "bg3-hud-core",
           "type": "module",
           "compatibility": {
-            "minimum": "4.0.0"
+            "minimum": "0.1.0"
           }
         }
       ],
