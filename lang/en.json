@@ -1,2 +1,63 @@
-{}
-
+{
+    "bg3-hud-dc20rpg": {
+        "Settings": {
+            "ShowItemNames": {
+                "Name": "Show Item Names",
+                "Hint": "Display item names below hotbar icons."
+            },
+            "ShowItemUses": {
+                "Name": "Show Item Uses",
+                "Hint": "Display remaining uses/charges on hotbar icons."
+            }
+        },
+        "Context": {
+            "Edit": "Edit Item",
+            "Enable": "Enable",
+            "Disable": "Disable",
+            "SendToChat": "Send to Chat",
+            "Remove": "Remove from Hotbar"
+        },
+        "Filters": {
+            "Attack": "Attack",
+            "Spell": "Spell",
+            "Reaction": "Reaction",
+            "Offensive": "Offensive",
+            "Defensive": "Defensive",
+            "Utility": "Utility",
+            "Cantrip": "Cantrip",
+            "Ritual": "Ritual"
+        },
+        "Actions": {
+            "Rest": "Rest",
+            "EndTurn": "End Turn"
+        },
+        "Info": {
+            "TradeSkills": "Trade Skills"
+        },
+        "AutoPopulate": {
+            "Groups": {
+                "Combat": "Combat",
+                "Magic": "Magic",
+                "Features": "Features",
+                "Consumables": "Consumables"
+            },
+            "ItemTypes": {
+                "Weapons": "Weapons",
+                "BasicActions": "Basic Actions",
+                "Techniques": "Techniques",
+                "Maneuvers": "Maneuvers",
+                "Spells": "Spells",
+                "Cantrips": "Cantrips",
+                "Rituals": "Rituals",
+                "Infusions": "Infusions",
+                "Features": "Features",
+                "ClassFeatures": "Class Features",
+                "AncestryFeatures": "Ancestry Features",
+                "Consumables": "Consumables",
+                "Potions": "Potions",
+                "Scrolls": "Scrolls",
+                "Bombs": "Bombs"
+            }
+        }
+    }
+}
