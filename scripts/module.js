@@ -92,6 +92,15 @@ class Dc20Adapter {
     }
 
     /**
+     * @param {Record<string, unknown>} _adapterFlags
+     * @param {*} _hotbarApp
+     * @returns {Promise<boolean>}
+     */
+    async onAdapterFlagsChanged(_adapterFlags, _hotbarApp) {
+        return false;
+    }
+
+    /**
      * Get default portrait data configuration for DC20
      * Uses DC20's resource paths (health.current, health.max, etc.)
      * @returns {Array<Object>} Default slot configurations
