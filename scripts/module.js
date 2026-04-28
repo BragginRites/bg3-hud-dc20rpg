@@ -4,6 +4,7 @@
  */
 
 import { registerSettings } from './utils/settings.js';
+import { createDc20PortraitContainer } from './components/containers/Dc20PortraitContainer.js';
 import { Dc20ActionButtonsContainer } from './components/containers/Dc20ActionButtonsContainer.js';
 import { Dc20FilterContainer } from './components/containers/Dc20FilterContainer.js';
 import { Dc20InfoContainer } from './components/containers/Dc20InfoContainer.js';
@@ -38,11 +39,17 @@ Hooks.on('bg3HudReady', async (BG3HUD_API) => {
 
     console.log('BG3 HUD DC20 | Registering DC20 components');
 
+    // Create the portrait container class (extends core's PortraitContainer)
+    const Dc20PortraitContainer = await createDc20PortraitContainer();
+
     // Create and register the adapter instance
     const adapter = new Dc20Adapter();
     BG3HUD_API.registerAdapter(adapter);
 
     // Register container classes
+    BG3HUD_API.registerPortraitContainer(Dc20PortraitContainer);
+    console.log('BG3 HUD DC20 | Portrait container registered');
+
     BG3HUD_API.registerActionButtonsContainer(Dc20ActionButtonsContainer);
     console.log('BG3 HUD DC20 | Action buttons container registered');
 

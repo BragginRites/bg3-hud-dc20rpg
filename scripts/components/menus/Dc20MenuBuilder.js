@@ -10,6 +10,43 @@ export class Dc20MenuBuilder {
     }
 
     /**
+     * Build portrait menu items for DC20.
+     * @param {PortraitContainer} portraitContainer - The portrait container instance
+     * @returns {Promise<Array<Object>>} Menu items array
+     */
+    async buildPortraitMenu(portraitContainer) {
+        const actor = portraitContainer.actor;
+        if (!actor) return [];
+
+        const actorImagePreference = actor.getFlag(MODULE_ID, 'useTokenImage');
+        const defaultUseTokenImage = game.settings.get(MODULE_ID, 'defaultPortraitImageSource') !== 'portrait';
+        const useTokenImage = actorImagePreference !== undefined ? actorImagePreference : defaultUseTokenImage;
+
+        return [
+            {
+                key: 'token',
+                label: game.i18n.localize(`${MODULE_ID}.Menu.UseTokenImage`),
+                icon: useTokenImage ? 'fas fa-check' : 'fas fa-chess-pawn',
+                onClick: async () => {
+                    if (!useTokenImage) {
+                        await actor.setFlag(MODULE_ID, 'useTokenImage', true);
+                    }
+                }
+            },
+            {
+                key: 'portrait',
+                label: game.i18n.localize(`${MODULE_ID}.Menu.UseCharacterPortrait`),
+                icon: !useTokenImage ? 'fas fa-check' : 'fas fa-user',
+                onClick: async () => {
+                    if (useTokenImage) {
+                        await actor.setFlag(MODULE_ID, 'useTokenImage', false);
+                    }
+                }
+            }
+        ];
+    }
+
+    /**
      * Build context menu for a cell
      * @param {GridCell} cell - The cell
      * @param {Object} data - Cell data

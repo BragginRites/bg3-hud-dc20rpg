@@ -8,7 +8,19 @@
             "ShowItemUses": {
                 "Name": "Show Item Uses",
                 "Hint": "Display remaining uses/charges on hotbar icons."
+            },
+            "DefaultPortraitImageSource": {
+                "Name": "Default Portrait Image Source",
+                "Hint": "Choose which image new actors use in the HUD before an actor-specific preference is set."
+            },
+            "PortraitSource": {
+                "Token": "Token Image",
+                "Actor": "Character Portrait"
             }
+        },
+        "Menu": {
+            "UseTokenImage": "Use Token Image",
+            "UseCharacterPortrait": "Use Character Portrait"
         },
         "Context": {
             "Edit": "Edit Item",

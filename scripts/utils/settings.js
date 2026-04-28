@@ -100,6 +100,21 @@ export function registerSettings() {
         default: true
     });
 
+    // Default portrait image source when actor has no explicit preference
+    game.settings.register(MODULE_ID, 'defaultPortraitImageSource', {
+        name: `${MODULE_ID}.Settings.DefaultPortraitImageSource.Name`,
+        hint: `${MODULE_ID}.Settings.DefaultPortraitImageSource.Hint`,
+        scope: 'client',
+        config: false,
+        type: String,
+        choices: {
+            token: `${MODULE_ID}.Settings.PortraitSource.Token`,
+            portrait: `${MODULE_ID}.Settings.PortraitSource.Actor`
+        },
+        default: 'token',
+        onChange: () => ui.BG3HUD_APP?.refresh()
+    });
+
     // Auto-populate on token creation setting
     game.settings.register(MODULE_ID, 'autoPopulateEnabled', {
         name: 'Auto-Populate on Token Creation',
@@ -130,7 +145,7 @@ export function registerSettings() {
         moduleId: MODULE_ID,
         titleKey: 'Display Settings',
         sections: [
-            { legend: 'Display Options', keys: ['showItemNames', 'showItemUses', 'showHealthOverlay'] }
+            { legend: 'Display Options', keys: ['showItemNames', 'showItemUses', 'showHealthOverlay', 'defaultPortraitImageSource'] }
         ]
     });
 
