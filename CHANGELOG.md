@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Branch update commit for `main` to capture current in-progress module changes.
 
+## [0.3.0] - 2026-04-29
+
+### Changed
+- Updated module metadata for `0.3.0` release alignment.
+- Updated required `bg3-hud-core` minimum compatibility to `0.3.0`.
+
 ## [0.2.3] - 2026-01-28
 
 ### Changed
