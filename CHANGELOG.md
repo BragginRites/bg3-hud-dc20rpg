@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2026-07-13
+
+Requires **bg3-hud-core 0.4.3**.
+
+### Changed
+- **Foundry v14 ready**: Verified and working on Foundry v14, and still fully supported on v13.
+
+### Fixed
+- **Item tooltips on Foundry v14**: Item descriptions in tooltips no longer come up blank on the new version — they now use Foundry's current way of formatting text, so inline rolls and links display properly.
+
 ## [Branch Update: main] - 2026-04-28
 
 ### Changed

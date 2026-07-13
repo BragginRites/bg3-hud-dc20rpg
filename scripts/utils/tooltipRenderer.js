@@ -69,7 +69,10 @@ export async function renderDc20Tooltip(data) {
 
     // Description
     if (system.description) {
-        const enriched = await TextEditor.enrichHTML(system.description, { async: true });
+        const enriched = await foundry.applications.ux.TextEditor.implementation.enrichHTML(system.description, {
+            rollData: item.getRollData?.() ?? {},
+            relativeTo: item.actor ?? item
+        });
         parts.push(`<div class="dc20-tooltip-description">${enriched}</div>`);
     }
 
