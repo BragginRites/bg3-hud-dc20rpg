@@ -168,13 +168,14 @@ export function registerSettings() {
     });
 
     // Display submenu
+    // Display submenu — player-visible: holds per-client display preferences.
     game.settings.registerMenu(MODULE_ID, 'displaySettingsMenu', {
         name: 'Display Settings',
         label: 'Display',
         hint: 'Configure display options for the HUD.',
         icon: 'fas fa-list',
         type: DisplaySettingsMenu,
-        restricted: true
+        restricted: false
     });
 
     // Auto-populate submenu

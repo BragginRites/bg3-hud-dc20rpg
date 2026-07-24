@@ -1,6 +1,8 @@
 import { InfoContainer } from '/modules/bg3-hud-core/scripts/components/containers/InfoContainer.js';
+import { createLogger } from '/modules/bg3-hud-core/scripts/utils/logger.js';
 
 const MODULE_ID = 'bg3-hud-dc20rpg';
+const log = createLogger('bg3-hud-dc20rpg');
 
 // DC20 Attributes (from DC20RPG.attributes in config)
 const DC20_ATTRIBUTES = {
@@ -75,7 +77,7 @@ export class Dc20InfoContainer extends InfoContainer {
                 await this.actor.rollInitiative({ createCombatants: true });
             }
         } catch (err) {
-            console.error('DC20 Info | Roll select failed', err);
+            log.error('Roll select failed', err);
         }
     }
 
@@ -92,11 +94,7 @@ export class Dc20InfoContainer extends InfoContainer {
         }
 
         // Re-render content
-        if (this.panel) {
-            this.panel.innerHTML = '';
-            const content = await this.renderContent();
-            this.panel.appendChild(content);
-        }
+        await this.update();
     }
 
     /**

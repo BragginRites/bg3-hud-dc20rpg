@@ -101,16 +101,6 @@ export class Dc20FilterContainer extends FilterContainer {
             return cell.dataset.itemType === filterData.itemType;
         }
 
-        // Handle category filtering
-        if (filterData.category) {
-            return cell.dataset.category === filterData.category;
-        }
-
-        // Handle spell type filtering
-        if (filterData.spellType) {
-            return cell.dataset.spellType === filterData.spellType;
-        }
-
         return false;
     }
 }

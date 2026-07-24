@@ -12,16 +12,18 @@ import { Dc20AutoPopulate } from './features/Dc20AutoPopulate.js';
 import { Dc20AutoSort } from './features/Dc20AutoSort.js';
 import { Dc20MenuBuilder } from './components/menus/Dc20MenuBuilder.js';
 import { renderDc20Tooltip } from './utils/tooltipRenderer.js';
+import { createLogger } from '/modules/bg3-hud-core/scripts/utils/logger.js';
 
 const MODULE_ID = 'bg3-hud-dc20rpg';
+const log = createLogger('bg3-hud-dc20rpg');
 
-console.log('BG3 HUD DC20 | Loading adapter');
+log.debug('Loading adapter');
 
 /**
  * Register settings
  */
 Hooks.once('init', () => {
-    console.log('BG3 HUD DC20 | Registering settings');
+    log.debug('Registering settings');
     registerSettings();
 });
 
@@ -29,15 +31,15 @@ Hooks.once('init', () => {
  * Wait for core to be ready, then register DC20 components
  */
 Hooks.on('bg3HudReady', async (BG3HUD_API) => {
-    console.log('BG3 HUD DC20 | Received bg3HudReady hook');
+    log.debug('Received bg3HudReady hook');
 
     // Verify we're in DC20 system
     if (game.system.id !== 'dc20rpg') {
-        console.warn('BG3 HUD DC20 | Not running DC20 RPG system, skipping registration');
+        log.warn('Not running DC20 RPG system, skipping registration');
         return;
     }
 
-    console.log('BG3 HUD DC20 | Registering DC20 components');
+    log.debug('Registering DC20 components');
 
     // Create the portrait container class (extends core's PortraitContainer)
     const Dc20PortraitContainer = await createDc20PortraitContainer();
@@ -48,26 +50,26 @@ Hooks.on('bg3HudReady', async (BG3HUD_API) => {
 
     // Register container classes
     BG3HUD_API.registerPortraitContainer(Dc20PortraitContainer);
-    console.log('BG3 HUD DC20 | Portrait container registered');
+    log.debug('Portrait container registered');
 
     BG3HUD_API.registerActionButtonsContainer(Dc20ActionButtonsContainer);
-    console.log('BG3 HUD DC20 | Action buttons container registered');
+    log.debug('Action buttons container registered');
 
     BG3HUD_API.registerFilterContainer(Dc20FilterContainer);
-    console.log('BG3 HUD DC20 | Filter container registered');
+    log.debug('Filter container registered');
 
     BG3HUD_API.registerInfoContainer(Dc20InfoContainer);
-    console.log('BG3 HUD DC20 | Info container registered');
+    log.debug('Info container registered');
 
     // Register menu builder
     BG3HUD_API.registerMenuBuilder('dc20rpg', Dc20MenuBuilder, { adapter: adapter });
-    console.log('BG3 HUD DC20 | Menu builder registered');
+    log.debug('Menu builder registered');
 
     // Register tooltip renderer
     BG3HUD_API.registerTooltipRenderer?.('dc20rpg', renderDc20Tooltip);
-    console.log('BG3 HUD DC20 | Tooltip renderer registered');
+    log.debug('Tooltip renderer registered');
 
-    console.log('BG3 HUD DC20 | Registration complete');
+    log.debug('Registration complete');
 
     // Signal that adapter registration is complete
     Hooks.call('bg3HudRegistrationComplete');
@@ -88,7 +90,7 @@ class Dc20Adapter {
         this.autoPopulate = new Dc20AutoPopulate();
         this.autoPopulate.setAutoSort(this.autoSort);
 
-        console.log('BG3 HUD DC20 | Dc20Adapter created with autoSort and autoPopulate');
+        log.debug('Dc20Adapter created with autoSort and autoPopulate');
     }
 
     /**
@@ -126,7 +128,7 @@ class Dc20Adapter {
         const data = cell.data;
         if (!data) return;
 
-        console.log('DC20 Adapter | Cell clicked:', data);
+        log.debug('Cell clicked:', data);
 
         switch (data.type) {
             case 'Item':
@@ -136,7 +138,7 @@ class Dc20Adapter {
                 await this._executeMacro(data.uuid);
                 break;
             default:
-                console.warn('DC20 Adapter | Unknown cell data type:', data.type);
+                log.warn('Unknown cell data type:', data.type);
         }
     }
 
@@ -160,13 +162,13 @@ class Dc20Adapter {
     async _useItem(uuid, event) {
         const item = await fromUuid(uuid);
         if (!item) {
-            console.warn('DC20 Adapter | Item not found:', uuid);
+            log.warn('Item not found:', uuid);
             return;
         }
 
         const actor = item.actor;
         if (!actor) {
-            console.warn('DC20 Adapter | Item has no actor:', uuid);
+            log.warn('Item has no actor:', uuid);
             return;
         }
 
@@ -184,7 +186,7 @@ class Dc20Adapter {
             // Shift key enables quick roll (skip dialog)
             await RollDialog.open(actor, item, { quickRoll: event?.shiftKey ?? false });
         } else {
-            console.warn('DC20 Adapter | RollDialog not available, opening sheet instead');
+            log.warn('RollDialog not available, opening sheet instead');
             item.sheet?.render(true);
         }
     }
@@ -197,7 +199,7 @@ class Dc20Adapter {
     async _executeMacro(uuid) {
         const macro = await fromUuid(uuid);
         if (!macro) {
-            console.warn('DC20 Adapter | Macro not found:', uuid);
+            log.warn('Macro not found:', uuid);
             return;
         }
         await macro.execute();

@@ -1,6 +1,7 @@
 import { ActionButtonsContainer } from '/modules/bg3-hud-core/scripts/components/containers/ActionButtonsContainer.js';
+import { createLogger } from '/modules/bg3-hud-core/scripts/utils/logger.js';
 
-const MODULE_ID = 'bg3-hud-dc20rpg';
+const log = createLogger('bg3-hud-dc20rpg');
 
 /**
  * DC20 Action Buttons Container
@@ -34,7 +35,7 @@ export class Dc20ActionButtonsContainer extends ActionButtonsContainer {
             key: 'end-turn',
             classes: ['end-turn-button'],
             icon: 'fas fa-stopwatch',
-            label: '',
+            label: 'End Turn',
             tooltip: 'End Turn',
             tooltipDirection: 'LEFT',
             visible: () => {
@@ -72,7 +73,7 @@ export class Dc20ActionButtonsContainer extends ActionButtonsContainer {
                         ui.notifications?.warn('Rest dialog not available');
                     }
                 } catch (error) {
-                    console.error('DC20 Action Buttons | Rest failed:', error);
+                    log.error('Rest failed:', error);
                     ui.notifications?.error('Failed to open rest dialog');
                 }
             }

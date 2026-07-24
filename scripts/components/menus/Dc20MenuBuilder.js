@@ -1,3 +1,5 @@
+import { resolveUseTokenImage } from '/modules/bg3-hud-core/scripts/utils/portraitImage.js';
+
 const MODULE_ID = 'bg3-hud-dc20rpg';
 
 /**
@@ -18,9 +20,7 @@ export class Dc20MenuBuilder {
         const actor = portraitContainer.actor;
         if (!actor) return [];
 
-        const actorImagePreference = actor.getFlag(MODULE_ID, 'useTokenImage');
-        const defaultUseTokenImage = game.settings.get(MODULE_ID, 'defaultPortraitImageSource') !== 'portrait';
-        const useTokenImage = actorImagePreference !== undefined ? actorImagePreference : defaultUseTokenImage;
+        const useTokenImage = resolveUseTokenImage(actor, MODULE_ID);
 
         return [
             {
