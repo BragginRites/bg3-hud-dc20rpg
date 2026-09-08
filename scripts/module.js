@@ -5,7 +5,8 @@
 
 import { registerSettings } from './utils/settings.js';
 import { createDc20PortraitContainer } from './components/containers/Dc20PortraitContainer.js';
-import { Dc20ActionButtonsContainer } from './components/containers/Dc20ActionButtonsContainer.js';
+import { getDc20Rests } from './components/containers/Dc20ActionButtonsContainer.js';
+import { ActiveEffectsContainer } from '/modules/bg3-hud-core/scripts/components/containers/ActiveEffectsContainer.js';
 import { Dc20FilterContainer } from './components/containers/Dc20FilterContainer.js';
 import { Dc20InfoContainer } from './components/containers/Dc20InfoContainer.js';
 import { Dc20AutoPopulate } from './features/Dc20AutoPopulate.js';
@@ -48,18 +49,14 @@ Hooks.on('bg3HudReady', async (BG3HUD_API) => {
     const adapter = new Dc20Adapter();
     BG3HUD_API.registerAdapter(adapter);
 
-    // Register container classes
-    BG3HUD_API.registerPortraitContainer(Dc20PortraitContainer);
-    log.debug('Portrait container registered');
-
-    BG3HUD_API.registerActionButtonsContainer(Dc20ActionButtonsContainer);
-    log.debug('Action buttons container registered');
-
-    BG3HUD_API.registerFilterContainer(Dc20FilterContainer);
-    log.debug('Filter container registered');
-
-    BG3HUD_API.registerInfoContainer(Dc20InfoContainer);
-    log.debug('Info container registered');
+    BG3HUD_API.registerNamedHudParts({
+        portrait: Dc20PortraitContainer,
+        filter: Dc20FilterContainer,
+        characterInfo: Dc20InfoContainer,
+        activeEffects: ActiveEffectsContainer,
+        rest: getDc20Rests
+    });
+    log.debug('Named HUD parts registered');
 
     // Register menu builder
     BG3HUD_API.registerMenuBuilder('dc20rpg', Dc20MenuBuilder, { adapter: adapter });
