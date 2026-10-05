@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+Requires the matching bg3-hud-core update.
+
+Keeps DC20 on the same HUD as that Core update. Selecting a creature and changes such as health follow it. This game does not add its own target picker.
+
+### Changed
+- **In step with Core**: The bar shows for the creature you select, and small changes update the part that changed.
+
 ## [0.6.0] - 2026-08-25
 
 Requires **bg3-hud-core 0.6.0**.
