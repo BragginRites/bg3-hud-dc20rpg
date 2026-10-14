@@ -3,7 +3,7 @@ import { createSettingsSubmenu } from '/modules/bg3-hud-core/scripts/api/Setting
 const MODULE_ID = 'bg3-hud-dc20rpg';
 
 const openAutoPopulateConfiguration = async () => {
-    const adapter = ui.BG3HOTBAR?.registry?.activeAdapter;
+    const adapter = ui.BG3HOTBAR?.api?.getActiveAdapter();
     if (!adapter || !adapter.autoPopulate) {
         ui.notifications.error('Auto-populate system not available');
         return;
@@ -40,6 +40,8 @@ class AutoPopulateConfigMenu extends foundry.applications.api.ApplicationV2 {
         tag: 'div',
     };
 
+    // render() is overridden as a side-effecting hook (not an actual render) so this
+    // class can act purely as the clickable entry point registerMenu requires.
     async render() {
         await openAutoPopulateConfiguration();
         return this;

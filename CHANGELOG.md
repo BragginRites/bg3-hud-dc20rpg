@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-10-14
+
+Requires **bg3-hud-core 0.8.0**.
+
+### Changed
+- **Internal only**: Switched to `BG3HUD_API.getActiveAdapter()` for reading the active adapter, matching core's closure of the `ui.BG3HOTBAR.registry` seam. No player-facing change.
+
 ## [0.7.0] - 2026-10-05
 
 Requires **bg3-hud-core 0.7.0**.

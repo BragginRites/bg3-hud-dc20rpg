@@ -254,10 +254,7 @@ class Dc20Adapter {
      * @returns {Object} Display settings object
      */
     getDisplaySettings() {
-        return {
-            showItemNames: game.settings.get(MODULE_ID, 'showItemNames'),
-            showItemUses: game.settings.get(MODULE_ID, 'showItemUses')
-        };
+        return ui.BG3HOTBAR.api.getDisplaySettings(MODULE_ID);
     }
 
     /**

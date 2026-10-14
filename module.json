@@ -2,7 +2,7 @@
     "id": "bg3-hud-dc20rpg",
     "title": "BG3 Inspired HUD - DC20 RPG",
     "description": "A DC20 RPG integration module for the BG3 Inspired HUD. This module adapts the core HUD functionality for the DC20 RPG system, providing token-specific HUD elements for abilities, spells, and effects.",
-    "version": "0.7.0",
+    "version": "0.8.0",
     "authors": [
         {
             "name": "BragginRites",
@@ -26,7 +26,7 @@
                 "id": "bg3-hud-core",
                 "type": "module",
                 "compatibility": {
-                    "minimum": "0.7.0"
+                    "minimum": "0.8.0"
                 }
             }
         ],
